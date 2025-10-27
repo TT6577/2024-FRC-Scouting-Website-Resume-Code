@@ -1,0 +1,7 @@
+# This is where you put the dependencies or libraries you need to use in the website. These are all the libraries for the google sheets stuff
+gspread==5.12.0
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+requests
+

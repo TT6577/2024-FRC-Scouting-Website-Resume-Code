@@ -4,128 +4,151 @@
 
 <div class="container-fluid">
 	<br />
+  <div class="justify-content-center text-center">
+    <p>Search or click on a team to see their stats or something idk</p>
+  <div>
 	<!--Search bar-->
 	<form autocomplete="off" method="POST">
 		<div class="d-flex justify-content-center text-center">
-			<input class="text-center" id="ticketNum" type="number" name="searched_team" placeholder="0">
-			<button type="submit" class="btn btn-primary">Search</button>
+			<input class="text-center" id="ticketNum" type="number" name="searched_team" placeholder="Team Number">
+			<button type="submit" name="action" value="Search Team" class="btn btn-primary">Search</button>
+      <div class="info-icon" id="info-icon">
+        <span class="tooltip" id="tooltip">Leave field blank or reload page to view all teams again</span>
+      </div>
 		</div>
+      
+    <br>
+    <div class="d-flex justify-content-center text-center">
+      <input class="text-center" id="password" name="password" placeholder="Password">
+      <button type="submit" name="action" value="Delete All" class="btn btn-primary">Mega Delete</button> 
+      <div class="info-icon" id="info-icon">
+        <span class="tooltip" id="tooltip">Protected by password - only for use by head scout/website programmer</span>
+      </div>
+    </div>
 	</form>
+  <br>
+  {{ html_table | safe }}
+
+  <div class="justify-content-center text-center">
+    <!--a href="https://docs.google.com/spreadsheets/d/1T77nDpB7DKlAXHmskB2xBjXooPWVs0I4o0fRhWeUXv8/edit#gid=0" target="_blank" title="Opens in a new tab">Google Sheets Data (not in use for now)</a-->
+    <p class="center"># of Entries: {{num_entries}}</p>
+    <button type="data" class="btn btn-primary">
+      <a href="{{ url_for('auth.data') }}" style="color: inherit; text-decoration: none;">Clear Filters</a>
+    </button>
+    <div class="info-icon" id="info-icon">
+      <span class="tooltip" id="tooltip">Remove filters: shows all available data again</span>
+    </div>
+  </div>
+  
 
 	<!--Table-->
   	<div class="row pb-5">
 		<div class="col-md-12 col-lg-12">
 			<table class="my-4 table">
 				<tr class="border text-center">
-					<th class="border">Team</th>
-					<th class="border">Round</th>
+          <th class="border">Team <a href="?sort_by=team">v</a> <a href="?sort_by=teamreverse"><strong>^</strong></a></th>
+          <th class="border">Round <a href="?sort_by=round">v</a> <a href="?sort_by=roundreverse"><strong>^</strong></a><div class="info-icon" id="info-icon">
+            <span class="tooltip" id="tooltip">Press the up or down buttons to sort in order, press the team numbers to find teams</span>
+          </div></th>
 					<th class="border">Alliance</th>
 
           			<th>&emsp;&emsp;</th>
 
 					<th>Auton</th>
 					<th class="border">Starting_Pos</th>
-					<th class="border">Low_In</th>
-					<th class="border">Low_Missed</th>
-					<th class="border">Low_Unreliable</th>
-					<th class="border">Middle_In</th>
-					<th class="border">Middle_Missed</th>
-					<th class="border">Middle_Unreliable</th>
-					<th class="border">Top_In</th>
-					<th class="border">Top_Missed</th>
-					<th class="border">Top_Unreliable</th>
-					<th class="border">Leave_Community</th>
-					<th class="border">Dock</th>
+					<th class="border">Amp</th>
+					<th class="border">Speaker</th>
+          <th class="border">Auton Notes</th>
+					<th class="border">Community</th>
 
           			<th>&emsp;&emsp;</th>
 
 					<th>Teleop</th>
-					<th class="border">Low_In</th>
-					<th class="border">Low_Missed</th>
-					<th class="border">Low_Unreliable</th>
-					<th class="border">Middle_In</th>
-					<th class="border">Middle_Missed</th>
-					<th class="border">Middle_Unreliable</th>
-					<th class="border">Top_In</th>
-					<th class="border">Top_Missed</th>
-					<th class="border">Top_Unreliable</th>
-					<th class="border">Link</th>
-					<th class="border">Dock/Park</th>
+					<th class="border">Amp</th>
+					<th class="border">Speaker</th>
+          <th class="border">Trap</th>
+          <th class="border">Times Amplified</th>
+          <th class="border">Tele Notes</th>
 
           			<th>&emsp;&emsp;</th>
 
 					<th>Results</th>
-					<th class="border">Win/Lose/Tie</th>
-					<th class="border">Role</th>
-					<th class="border">Sustainability_Bonus</th>
-					<th class="border">Coopertition_Bonus</th>
-					<th class="border">Activation_Bonus</th>
+          <th class="border">Coopertition</th>
+          <th class="border">Stage</th>
+          <th class="border">Harmony</th>
+          <th class="border">Spotlight</th>
+          <!--<th class="border">Win/Lose/Tie</th>
+          <th class="border">Total_RP</th>-->
+        
+					     <th>&emsp;&emsp;</th>
 
-					<th>&emsp;&emsp;</th>
+					<th>Overall</th>
+          <th class="border">Role</th>      
+
+					     <th>&emsp;&emsp;</th>
 
 					<th>Add. Notes</th>
 					<th class="border">Notes</th>
+          <th class="border">Edit</th>
 					<th class="border">Delete</th>
 				</tr>
 
 				{% for datum in data %}
 				<tr class="border text-center">
-					<td class="border">{{ datum.team }}</td>
+					<td class="border"><a href="?sort_by={{ datum.team }}">{{ datum.team }}</a></td>
 					<td class="border">{{ datum.round }}</td>
 					<td class="border">{{ datum.alliance }}</td>
 
          			<td></td>
 					<td>--></td>
 					<td class="border">{{ datum.starting_pos }}</td>
-					<td class="border">{{ datum.auton_low_in }}</td>
-					<td class="border">{{ datum.auton_low_missed }}</td>
-					<td class="border">{{ datum.auton_unreliable_low }}</td>
-					<td class="border">{{ datum.auton_mid_in }}</td>
-					<td class="border">{{ datum.auton_mid_missed }}</td>
-					<td class="border">{{ datum.auton_unreliable_mid }}</td>
-					<td class="border">{{ datum.auton_high_in }}</td>
-					<td class="border">{{ datum.auton_high_missed }}</td>
-					<td class="border">{{ datum.auton_unreliable_high }}</td>
+					
+          <td class="border">{{ datum.auton_amp }}</td>
+					<td class="border">{{ datum.auton_speaker }}</td>
+          <td class="border">{{ datum.auton_notes }}</td>
+          
 					<td class="border">{{ datum.auton_community }}</td>
-					<td class="border">{{ datum.auton_dock_park }}</td>
 
           			<td></td>
 					<td>--></td>
-					<td class="border">{{ datum.tele_low_in }}</td>
-					<td class="border">{{ datum.tele_low_missed }}</td>
-					<td class="border">{{ datum.tele_unreliable_low }}</td>
-					<td class="border">{{ datum.tele_mid_in }}</td>
-					<td class="border">{{ datum.tele_mid_missed }}</td>
-					<td class="border">{{ datum.tele_unreliable_mid }}</td>
-					<td class="border">{{ datum.tele_high_in }}</td>
-					<td class="border">{{ datum.tele_high_missed }}</td>
-					<td class="border">{{ datum.tele_unreliable_high }}</td>
-					<td class="border">{{ datum.tele_link }}</td>
-					<td class="border">{{ datum.tele_unreliable_link }}</td>
-					<td class="border">{{ datum.dock_park }}</td>
+					<td class="border">{{ datum.tele_amp }}</td>
+          <td class="border">{{ datum.tele_speaker }}</td>
+          <td class="border">{{ datum.tele_trap }}</td>
+          <td class="border">{{ datum.times_amplified }}</td>
+          <td class="border">{{ datum.tele_notes }}</td>
 
         			<td></td>
-					<td>{{ datum.win }}</td>
-					<td>{{ datum.role }}</td>
-					<td class="border">{{ datum.sus_bonus }}</td>
-					<td class="border">{{ datum.coop_bonus }}</td>
-					<td class="border">{{ datum.act_bonus }}</td>
-
+          <td>--></td>
+					<td class="border">{{ datum.coopertition }}</td>
+          <td class="border">{{ datum.stage }}</td>
+          <td class="border">{{ datum.harmony}}</td>
+          <td class="border">{{ datum.spotlight }}</td>
+          <td></td>
+					   
+          <td>--></td>
+          
+					<td class="border">{{ datum.role }}</td>  
+          <!--td class="border">{{ datum.tier }}</td-->
+          
 					<td></td>
 					<td>--></td>
 					<td class="border">{{ datum.notes }}</td>
 
-         			<td>
+          <td class="border">
+            <button type="edit" class="btn btn-light">
+              <a href="{{ url_for('auth.edit', id=datum.id) }}">Edit</a>
+          </td>
+         	<td class="border">
 						<button type="delete" class="btn btn-light">
 							<a href="{{ url_for('auth.delete', id=datum.id) }}">Delete</a>
 						</button>
 					</td>
-
 				</tr>
-				{% endfor %}
+        {% endfor %}
 			</table>
 		</div>
 	</div>
+  {% if graph_made %} <p>Graph for Team {{ searched_team  }}</p><img src="static/team_averages.png" alt="Team Averages"> {% endif %}
 </div>
 
 {% endblock %}

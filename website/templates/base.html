@@ -71,6 +71,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/download">Download</a>
                         </li>
+                        <!--li class="nav-item">
+                            <a class="nav-link" href="/program">Offline Program</a>
+                    </li-->
                     </ul>
                 </div>
             </div>
@@ -113,6 +116,10 @@
             background-color: #212121;
             color: white
         }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
         h1{
             text-align: center;
             padding-top: 20px;
@@ -130,9 +137,11 @@
         }
         th{
             color: white;
+            border: 1px white;
         }
         td{
             color: white;
+            border: 1px white;
         }
         label{
             font-size: 20px;
@@ -140,12 +149,35 @@
         .big-word{
             font-size: 23px;
         }
+        .small-word{
+            font-size: 15px;
+        }
         .form-check {
             display: flex;
             align-items: center;
         }
         .form-check-input {
             margin-top: 0px;
+        }
+        .sticky {
+          position: sticky;
+          top:0;
+          border-style: solid;
+          border-color: #e81a8b;
+          background: #2e2e2e;
+          background-color: #e81a8b;
+          width: 100%;
+          z-index: 10000;
+        }
+
+        .column{
+          float: left;
+          width: 100%;
+        }
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
         }
         .taxi-check{
             padding-top: 3px;
@@ -221,6 +253,39 @@
             -webkit-animation: fadeIn 1s;
             animation: fadeIn 1s;
         }
+      
+        .info-icon {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-image: url("../static/infoicon.png");
+          background-size: cover;
+          border-radius: 50%;
+          position: relative;
+          cursor: pointer;
+        }
+
+        .tooltip {
+          visibility: hidden;
+          width: 120px;
+          background-color: black;
+          color: white;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px;
+          position: absolute;
+          z-index: 1;
+          bottom: 150%;
+          left: 50%;
+          margin-left: -60px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .info-icon:hover .tooltip {
+          visibility: visible;
+          opacity: 1;
+        }
 
         /* Add animation (fade in the popup) */
         @-webkit-keyframes fadeIn {
@@ -231,6 +296,13 @@
         @keyframes fadeIn {
             from {opacity: 0;}
             to {opacity:1 ;}
+        }
+
+        /* Responsive layout for columns */
+        @media screen and (max-width: 600px) {
+          .column {
+            width: 100%;
+          }
         }
     </style>
     <script>

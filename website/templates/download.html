@@ -6,11 +6,28 @@
 <div class="container">
     <div class="row">
       <div class="col text-center my-5">
-        <button type="submit" class="btn btn-light">
-            <a href='../static/data.csv' download="data.csv">Download</a>
+        <button type="button" class="btn btn-light">
+            <a href='../static/filtered_data.csv' download="data.csv">Download CSV</a>
         </button>
+        <br>
+        <br>
+        <br>
+        <form autocomplete=OFF method="POST">
+          <button type="submit" class="btn btn-light">
+            <p>Upload Data to Google Sheets</p>
+          </button>
+        </form>
+        <br>
+          <a href="https://docs.google.com/spreadsheets/d/1VrrXeGQ2-DlEfD2Epyr-opKc31NNFea5VHrrIsdgrzM/edit#gid=169386782" target="_blank">Clark's Google Sheets</a>
+        <br>
+        {% if finished_adding %}
+          <p class="center">Data Added!</p>
+          <p class="center"># of new entries added: {{ report_new }}</p>
+          <p class="center"># of entries already in sheets: {{ report_old }}</p>
+        {% endif %}
       </div>
     </div>
 </div>
+<img src="../static/amongustwerk.gif" alt="Go Clark Go" height="50" width="50" style="display: block; margin: 0 auto;>
 
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col text-center my-5">
+        <button type="submit" class="btn btn-light">
+            <a href='../static/FrcOfflineProgramDemo.zip' download>Download Offline Scouter Program</a>
+        </button>
+        <p class="center">This is the FRC Offline Scouting Program Demo. It currently only works on Windows, so Mac users are unable to use this. Download it, unzip it and click on frcoffline.exe to run the program. The program will generate QR codes once you enter data. If you encounter any problems please contact 24tylert@students.tas.tw or 24crystalc@students.tas.tw</p>
+        <button type="submit" class="btn btn-light">
+          <a href='../static/FrcOfflineProgramDemo.zip' download>Download Offline Head Scout Program</a>
+        </button>
+        <p class="center">This is the FRC Offline Head Scout Program Demo. It currently only works on Windows, so Mac users are unable to use this. Download it, unzip it and click on qrcamera.exe to run the program. The program will detect a camera, use that camera to detect qr codes, and add that information into the google sheets found at https://docs.google.com/spreadsheets/d/1T77nDpB7DKlAXHmskB2xBjXooPWVs0I4o0fRhWeUXv8/edit#gid=0. PRESS ESC TO EXIT PROGRAM. If you encounter any problems please contact 24tylert@students.tas.tw or 24crystalc@students.tas.tw</p>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row my-1 big-word justify-content-center text-center">
+  <h1>DATA EDITING MODE</h1>
+  <p>Entry ID: {{ id }}</p>
+  <p class="small-word">If you want to leave this page, just choose a page from the menu. Rest assured, leaving will (probably) not cause any issues &#x1F44D;</p>
+  <p class="small-word">However, pls don't spend too much time on this page, bc if this or other pieces of data get deleted while you are on this page, your own page might crash or cause issues. in that case pls just reload</p>
+</div>
+
+<form autocomplete=Off method=POST>
+
+<div class="row pb-5">
+  <div class="col-md-12 col-lg-12">
+    <table class="my-4 table">
+      <tr class="border text-center">
+        <th class="border">Headers</th>
+        <th class="border">Teammm</th>
+        <th class="border">Round</th>
+        <th class="border">Alliance</th>
+
+              <th>&emsp;&emsp;</th>
+
+        <th>Auton</th>
+        <th class="border">Starting_Pos</th>
+        <th class="border">Amp</th>
+        <th class="border">Speaker</th>
+        <th class="border">Auton Notes</th>
+        <th class="border">Community</th>
+
+              <th>&emsp;&emsp;</th>
+
+        <th>Teleop</th>
+        <th class="border">Amp</th>
+        <th class="border">Speaker</th>
+        <th class="border">Trap</th>
+        <th class="border">Times Amplified</th>
+        <th class="border">Tele Notes</th>
+
+              <th>&emsp;&emsp;</th>
+
+        <th>Results</th>
+        <th class="border">Coopertition</th>
+        <th class="border">Stage</th>
+        <th class="border">Harmony</th>
+        <th class="border">Spotlight</th>
+        <!--<th class="border">Win/Lose/Tie</th>
+        <th class="border">Total_RP</th>-->
+
+             <th>&emsp;&emsp;</th>
+
+        <th>Overall</th>
+        <th class="border">Roleeeee</th>      
+
+             <th>&emsp;&emsp;</th>
+
+        <th>Add. Notes</th>
+        <th class="border">Notes</td>
+      </tr>
+
+      <tr class="border text-center">
+        <td class="border">Old Data --></td>
+        <td class="border">{{ datum.team }}</td>
+        <td class="border">{{ datum.round }}</td>
+        <td class="border">{{ datum.alliance }}</td>
+
+            <td></td>
+        <td>--></td>
+        <td class="border">{{ datum.starting_pos }}</td>
+
+        <td class="border">{{ datum.auton_amp }}</td>
+        <td class="border">{{ datum.auton_speaker }}</td>
+        <td class="border">{{ datum.auton_notes }}</td>
+
+        <td class="border">{{ datum.auton_community }}</td>
+
+              <td></td>
+        <td>--></td>
+        <td class="border">{{ datum.tele_amp }}</td>
+        <td class="border">{{ datum.tele_speaker }}</td>
+        <td class="border">{{ datum.tele_trap }}</td>
+        <td class="border">{{ datum.times_amplified }}</td>
+        <td class="border">{{ datum.tele_notes }}</td>
+
+            <td></td>
+        <td>--></td>
+        <td class="border">{{ datum.coopertition }}</td>
+        <td class="border">{{ datum.stage }}</td>
+        <td class="border">{{ datum.harmony}}</td>
+        <td class="border">{{ datum.spotlight }}</td>
+        <td></td>
+
+        <td>--></td>
+
+        <td class="border">{{ datum.role }}</td>  
+        <!--td class="border">{{ datum.tier }}</td-->
+
+        <td></td>
+        <td>--></td>
+        <td class="border">{{ datum.notes }}</td>
+      </tr>
+
+      <tr>
+        <td class="border">New Data --></td>
+        <td class="border"><input class="form-control text-center" type="team" id="team" name="team" value={{ datum.team }}></td>
+        <td class="border"><input class="form-control text-center" type="round" id="round" name="round" value={{ datum.round }}></td>
+        <td class="border"><select class="form-control text-center" type="alliance" id="alliance" name="alliance" value={{ datum.alliance }}>
+            <option value="Red" {% if datum.alliance == 'Red' %} selected {% endif %}>Red</option>
+            <option value="Blue" {% if datum.alliance == 'Blue' %} selected {% endif %}>Blue</option>
+        </select></td>
+        <td></td>
+        <td>--></td>
+
+        
+        <td class="border"><select class="form-control text-center" type="starting_pos" id="starting_pos" name="starting_pos" value={{ datum.starting_pos }}>
+            <option value="Amp Zone Side" {% if datum.starting_pos == 'Amp Zone Side' %} selected {% endif %}>Amp</option>
+            <option value="Middle" {% if datum.starting_pos == 'Middle' %} selected {% endif %}>Mid</option>
+            <option value="Source Zone Side" {% if datum.starting_pos == 'Source Zone Side' %} selected {% endif %}>Source</option>
+        </select></td>
+        <td class="border"><input class="form-control text-center" type="auton_amp" id="auton_amp" name="auton_amp" value={{ datum.auton_amp }}></td>
+        <td class="border"><input class="form-control text-center" type="auton_speaker" id="auton_speaker" name="auton_speaker" value={{ datum.auton_speaker }}></td>
+        <td class="border"><input class="form-control text-center" type="auton_notes" id="auton_notes" name="auton_notes" value={{ datum.auton_notes }}></td>
+        <td class="border"><select class="form-control text-center" type="auton_community" id="auton_community" name="auton_community" value={{ datum.auton_community }}>
+            <option value="0" {% if datum.auton_community == '0' %} selected {% endif %}>0</option>
+            <option value="2" {% if datum.auton_community == '2' %} selected {% endif %}>2</option>
+        </select></td>
+        <td></td>
+        <td>--></td>
+
+        
+        <td class="border"><input class="form-control text-center" type="tele_amp" id="tele_amp" name="tele_amp" value={{ datum.tele_amp }}></td>
+        <td class="border"><input class="form-control text-center" type="tele_speaker" id="tele_speaker" name="tele_speaker" value={{ datum.tele_speaker }}></td>
+        <td class="border"><input class="form-control text-center" type="tele_trap" id="tele_trap" name="tele_trap" value={{ datum.tele_trap }}></td>
+        <td class="border"><input class="form-control text-center" type="times_amplified" id="times_amplified" name="times_amplified" value={{ datum.times_amplified }}></td>
+        <td class="border"><input class="form-control text-center" type="tele_notes" id="tele_notes" name="tele_notes" value={{ datum.tele_notes }}></td>
+        <td></td>
+        <td>--></td>
+
+        
+        <td class="border"><select class="form-control text-center" type="coopertition" id="coopertition" name="coopertition" value={{ datum.coopertition }}>
+            <option value="0" {% if datum.coopertition == '0' %} selected {% endif %}>0</option>
+            <option value="1" {% if datum.coopertition == '1' %} selected {% endif %}>1</option>
+        </select></td>
+        <td class="border"><select class="form-control text-center" type="stage" id="stage" name="stage">
+            <option value="0" {% if datum.stage == '0' %} selected {% endif %}>0</option>
+            <option value="1" {% if datum.stage == '1' %} selected {% endif %}>1</option>
+            <option value="3" {% if datum.stage == '3' %} selected {% endif %}>3</option>
+        </select></td>
+        <td class="border"><select class="form-control text-center" type="harmony" id="harmony" name="harmony" value={{ datum.harmony }}>
+            <option value="0" {% if datum.harmony == '0' %} selected {% endif %}>0</option>
+            <option value="2" {% if datum.harmony == '2' %} selected {% endif %}>2</option>
+        </select></td>
+        <td class="border"><input class="form-control text-center" type="spotlight" id="spotlight" name="spotlight" value={{ datum.spotlight }}></td>
+        <td></td>
+        <td>--></td>
+        
+        <td class="border"><select class="form-control text-center" type="role" id="role" name="role" value={{ datum.role }}>
+            <option value="None" {% if datum.role == 'None' %} selected {% endif %}>None</option>
+            <option value="Amp" {% if datum.role == 'Amp' %} selected {% endif %}>Amp</option>
+            <option value="Speaker" {% if datum.role == 'Speaker' %} selected {% endif %}>Speak</option>
+            <option value="Both" {% if datum.role == 'Both' %} selected {% endif %}>Both</option>
+            <option value="Dysfunctional" {% if datum.role == 'Dysfunctional' %} selected {% endif %}>Dys</option>
+            <option value="Defense" {% if datum.role == 'Defense' %} selected {% endif %}>Def</option>
+        </select></td>
+        <td></td>
+        <td>--></td>
+
+        
+        <td class="border"><input class="form-control text-center" type="notes" id="notes" name="notes" value={{ datum.notes }}></td>
+      </tr>
+      
+
+      <tr>
+        <td class="border">Data Type</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+        <td class="border">Red or Blue</td>
+
+              <td>&emsp;&emsp;</td>
+
+        <td>Auton</td>
+        <td class="border">* Zone Side, Middle</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+        <td class="border">0 or 2</td>
+
+              <td>&emsp;&emsp;</td>
+
+        <td>Teleop</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+        <td class="border">Int</td>
+
+              <td>&emsp;&emsp;</td>
+
+        <td>Results</td>
+        <td class="border">0 or 1</td>
+        <td class="border">0, 1, 3</td>
+        <td class="border">0 or 2</td>
+        <td class="border">Int</td>
+        <!--<td class="border">Win/Lose/Tie</td>
+        <td class="border">Total_RP</td>-->
+
+             <td>&emsp;&emsp;</td>
+
+        <td>Overall</td>
+        <td class="border">Role</td>      
+
+             <td>&emsp;&emsp;</td>
+
+        <td>Add. Notes</td>
+        <td class="border">String</td>
+        
+      </tr>
+      
+    </table>
+  </div>
+  <br>
+    <div class="col text-center">
+      <button type="submit" class="btn btn-primary">Replace Data</button>
+    </div>
+</div>
+</form>
+{% endblock %}

@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "website/auth.py": [
+      {
+        "id": "341cfcbc-d332-457f-94c2-5dd4a887d557",
+        "line": 314,
+        "version": 19997,
+        "index": 11707
+      }
+    ]
+  }
 }
