@@ -1,6 +1,7 @@
 # This is where you put the dependencies or libraries you need to use in the website. These are all the libraries for the google sheets stuff
 flask
 flask-sqlalchemy
+flask-login
 gunicorn
 requests
 tbapy
