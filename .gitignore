@@ -1,0 +1,11 @@
+credentials.json
+instance/
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.db
+.cache/
+.pythonlibs/
+venv/
+poetry.lock
