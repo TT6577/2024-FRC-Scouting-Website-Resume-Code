@@ -44,6 +44,7 @@ headers = {'X-TBA-Auth-Key': tba_key}
 response = requests.get(api_url, headers=headers)
 
 # Get team numbers from TBA APi to display on the website for the team dropdown menu
+all_teams = []
 if response.status_code == 200:
   # Parse the JSON response
   teams = response.json()
@@ -85,14 +86,15 @@ scope = [
   'https://www.googleapis.com/auth/drive'
 ]
 # I created a robot service account that can access google sheets to pull data and edit it. Search up how to use google service accounts to make your own and replace the current credentials.json file with your own.
-credentials = Credentials.from_service_account_file('credentials.json',
-                                                    scopes=scope)
-
-# Opens the google sheets. check the documentation for finding specific sheets and stuff
-client = gspread.authorize(credentials)
-document = client.open_by_url(  "https://docs.google.com/spreadsheets/d/1VrrXeGQ2-DlEfD2Epyr-opKc31NNFea5VHrrIsdgrzM/edit#gid=169386782"
-)
-sheet = document.sheet1
+sheet = None
+try:
+  credentials = Credentials.from_service_account_file('credentials.json',
+                                                      scopes=scope)
+  client = gspread.authorize(credentials)
+  document = client.open_by_url("https://docs.google.com/spreadsheets/d/1VrrXeGQ2-DlEfD2Epyr-opKc31NNFea5VHrrIsdgrzM/edit#gid=169386782")
+  sheet = document.sheet1
+except Exception as e:
+  print(f"Google Sheets unavailable: {e}")
 
 # Password for the "delete all data" button from the data page
 # Clark was our strategist and head scout lmao
